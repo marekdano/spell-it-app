@@ -1,4 +1,23 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# spell-it-app
+*Examine your spelling skills with this app.*
+
+The spell-it-app helps users practice their spelling by playing the audio recording of a word the user must then spell using the computer keyboard.
+
+Inspired by [app-ideas](https://github.com/florinpop17/app-ideas/blob/master/Projects/SpellIt-App.md).
+
+### User Stories
+- [ ] User can click the 'Play' button to hear the word that's to be entered
+-	[ ] User can see letters displayed in the word input text box as they are entered on the keyboard
+- [ ] User can click the 'Enter' button to submit the word that has been typed in the word input text box
+- [ ] User can see a confirmation message when the correct word is typed
+- [ ] User can see a message requesting the word be typed again when it is spelled incorrectly
+- [ ] User can see a tally of the number of correct spellings, total number of words attempted, and a percentage of successful entries.
+
+### Bonus features
+- [ ] User can hear an confirmation sound when the word is correctly spelled
+- [ ] User can hear a warning sound when the word is incorrectly spelled
+- [ ] User can click the 'Hint' button to highlight the incorrect letters in the word input text box
+- [ ] User can press the 'Enter' key on the keyboard to submit a typed word or click the 'Enter' button in the app window
 
 ## Available Scripts
 
@@ -6,63 +25,13 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Runs the app in the development mode.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
