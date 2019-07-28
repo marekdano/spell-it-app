@@ -1,15 +1,20 @@
 import React from 'react';
 import './App.css';
 
+const words = ['car', 'window', 'chair', 'trees'];
+
+const playWord = (word) => {
+  const msg = new SpeechSynthesisUtterance(word);
+  window.speechSynthesis.speak(msg);
+}
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <main>
+      <section className="btns">
+        <button onClick={() => playWord(words[0])}>Play</button>
+      </section>
+    </main>
   );
 }
 
