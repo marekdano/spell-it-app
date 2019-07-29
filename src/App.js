@@ -1,7 +1,27 @@
 import React from 'react';
 import './App.css';
+import {wordsWithLevels} from './source';
 
-const words = ['car', 'window', 'chair', 'trees'];
+export const generateListOfWords = (level, quantity) => {
+  const list = wordsWithLevels[level];
+  const listLength = list.length;
+
+  let generatedList = [];
+  let uniqueNums = []; 
+  
+  while(generatedList.length < quantity) {
+    const num = generateNumInRange(listLength);
+    if (!uniqueNums.includes(num)) {
+      uniqueNums = [...uniqueNums, num];
+      generatedList = [...generatedList, list[num]];
+    }
+  }
+  return generatedList;
+}
+
+const generateNumInRange = (length) => {
+  return Math.floor(Math.random() * length);
+}
 
 const playWord = (word) => {
   const msg = new SpeechSynthesisUtterance(word);
@@ -12,7 +32,8 @@ function App() {
   return (
     <main>
       <section className="btns">
-        <button onClick={() => playWord(words[0])}>Play</button>
+        <button onClick={() => playWord(wordsWithLevels['level1'][1])}>Play</button>
+        <button>Reset</button>
       </section>
     </main>
   );
