@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {wordsWithLevels} from './source';
 
@@ -29,12 +29,25 @@ const playWord = (word) => {
 }
 
 function App() {
+  const [words, setWords] = useState([]);
+
+  const startGame = (level) => {
+    setWords(generateListOfWords(level, 10));
+  }
+
   return (
     <main>
+      <section className="levels">
+        <ul>
+          <li onClick={() => startGame('level1')}>Level 1</li>
+          <li onClick={() => startGame('level2')}>Level 2</li>
+          <li onClick={() => startGame('level3')}>Level 3</li>
+        </ul>
+      </section>
       <section className="btns">
         <button onClick={() => playWord(wordsWithLevels['level1'][1])}>Play</button>
-        <button>Reset</button>
       </section>
+      {words.toString()}
     </main>
   );
 }
