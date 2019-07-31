@@ -1,7 +1,31 @@
-main {
+#root {
   background-color: #282c34;
   min-height: 100vh;
+}
+
+main {
   color: white;
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 10px; 
+}
+
+.levels ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.levels li {
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: .6rem 1.2rem;
+}
+
+.levels li:hover {
+  cursor: pointer;
+  filter: brightness(75%);
 }
 
 .btns {
