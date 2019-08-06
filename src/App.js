@@ -28,11 +28,30 @@ const playWord = (word) => {
   window.speechSynthesis.speak(msg);
 }
 
+const areWordsTheSame = (enteredWord, currentWord) => {
+  return enteredWord === currentWord;
+}
+
 function App() {
   const [words, setWords] = useState([]);
+  const [indexOfCurrentWord, setIndexOfCurrentWord] = useState();
 
   const startGame = (level) => {
-    setWords(generateListOfWords(level, 10));
+    const generatedWords = generateListOfWords(level, 10);
+    setWords(generatedWords);
+    setIndexOfCurrentWord(0);
+  }
+
+  const playCurrentWord = () => {
+    playWord(words[indexOfCurrentWord]);
+  }
+
+  const validateEnteredWord = (enteredWord) => {
+    areWordsTheSame(enteredWord.trim(), words[indexOfCurrentWord]) 
+      ? alert('Correct spelling!')
+      : alert('Wrong spelling');
+
+    (indexOfCurrentWord + 1 < words.length) && setIndexOfCurrentWord(indexOfCurrentWord + 1)
   }
 
   return (
@@ -45,7 +64,7 @@ function App() {
         </ul>
       </section>
       <section className="btns">
-        <button onClick={() => playWord(wordsWithLevels['level1'][1])}>Play</button>
+        <button onClick={playCurrentWord}>Play</button>
       </section>
       {words.toString()}
     </main>
