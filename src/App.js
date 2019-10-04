@@ -1,40 +1,11 @@
 import React, {useState} from 'react';
+import { generateListOfWords, playWord, areStringsTheSame } from './utils.js';
 import './App.css';
-import {wordsWithLevels} from './source';
-
-export const generateListOfWords = (level, quantity) => {
-  const list = wordsWithLevels[level];
-  const listLength = list.length;
-
-  let generatedList = [];
-  let uniqueNums = []; 
-  
-  while(generatedList.length < quantity) {
-    const num = generateNumInRange(listLength);
-    if (!uniqueNums.includes(num)) {
-      uniqueNums = [...uniqueNums, num];
-      generatedList = [...generatedList, list[num]];
-    }
-  }
-  return generatedList;
-}
-
-const generateNumInRange = (length) => {
-  return Math.floor(Math.random() * length);
-}
-
-const playWord = (word) => {
-  const msg = new SpeechSynthesisUtterance(word);
-  window.speechSynthesis.speak(msg);
-}
-
-const areWordsTheSame = (enteredWord, currentWord) => {
-  return enteredWord === currentWord;
-}
 
 function App() {
   const [words, setWords] = useState([]);
-  const [indexOfCurrentWord, setIndexOfCurrentWord] = useState();
+  const [indexOfCurrentWord, setIndexOfCurrentWord] = useState(null);
+  const [word, setWord] = useState('');
 
   const startGame = (level) => {
     const generatedWords = generateListOfWords(level, 10);
@@ -47,7 +18,7 @@ function App() {
   }
 
   const validateEnteredWord = (enteredWord) => {
-    areWordsTheSame(enteredWord.trim(), words[indexOfCurrentWord]) 
+    areStringsTheSame(enteredWord.trim(), words[indexOfCurrentWord]) 
       ? alert('Correct spelling!')
       : alert('Wrong spelling');
 
@@ -67,6 +38,20 @@ function App() {
         <button onClick={playCurrentWord}>Play</button>
       </section>
       {words.toString()}
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          validateEnteredWord(word)
+          setWord('')
+        }}
+      > 
+        <input 
+          data-testid="word-input"
+          type="text"
+          value={word}
+          onChange={event => setWord(event.target.value)}
+        />
+      </form>
     </main>
   );
 }
