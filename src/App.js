@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useRef } from 'react';
 import { generateListOfWords, playWord, areStringsTheSame } from './utils.js';
 import './App.css';
 
@@ -6,6 +6,7 @@ function App() {
   const [words, setWords] = useState([]);
   const [indexOfCurrentWord, setIndexOfCurrentWord] = useState(null);
   const [word, setWord] = useState('');
+  const inputEl = useRef(null);
 
   const startGame = (level) => {
     const generatedWords = generateListOfWords(level, 10);
@@ -15,6 +16,7 @@ function App() {
 
   const playCurrentWord = () => {
     playWord(words[indexOfCurrentWord]);
+    inputEl.current.focus();
   }
 
   const validateEnteredWord = (enteredWord) => {
@@ -35,7 +37,9 @@ function App() {
         </ul>
       </section>
       <section className="btns">
-        <button onClick={playCurrentWord}>Play</button>
+        <button 
+          onClick={playCurrentWord}
+        >Play</button>
       </section>
       {words.toString()}
       <form
@@ -49,6 +53,7 @@ function App() {
           data-testid="word-input"
           type="text"
           value={word}
+          ref={inputEl}
           onChange={event => setWord(event.target.value)}
         />
       </form>
