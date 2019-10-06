@@ -2,16 +2,24 @@ import React, { useState, useRef } from 'react';
 import { generateListOfWords, playWord, areStringsTheSame } from './utils.js';
 import './App.css';
 
+const level = {
+  Level1: 'level1',
+  Level2: 'level2',
+  Level3: 'level3'
+}
+
 function App() {
   const [words, setWords] = useState([]);
   const [indexOfCurrentWord, setIndexOfCurrentWord] = useState(null);
   const [word, setWord] = useState('');
+  const [levelName, setLevelName] = useState(null);
   const inputEl = useRef(null);
 
   const startGame = (level) => {
     const generatedWords = generateListOfWords(level, 10);
     setWords(generatedWords);
     setIndexOfCurrentWord(0);
+    setLevelName(level);
   }
 
   const playCurrentWord = () => {
@@ -31,17 +39,20 @@ function App() {
     <main>
       <section className="levels">
         <ul>
-          <li onClick={() => startGame('level1')}>Level 1</li>
-          <li onClick={() => startGame('level2')}>Level 2</li>
-          <li onClick={() => startGame('level3')}>Level 3</li>
+          <li className={levelName === level.Level1 && 'active'} onClick={() => startGame(level.Level1)}>Level 1</li>
+          <li className={levelName === level.Level2 && 'active'} onClick={() => startGame(level.Level2)}>Level 2</li>
+          <li className={levelName === level.Level3 && 'active'} onClick={() => startGame(level.Level3)}>Level 3</li>
         </ul>
       </section>
       <section className="btns">
         <button 
+          disabled={!levelName}
           onClick={playCurrentWord}
-        >Play</button>
+        >
+          Play
+        </button>
       </section>
-      {words.toString()}
+      {/* {words.toString()} */}
       <form
         onSubmit={event => {
           event.preventDefault();

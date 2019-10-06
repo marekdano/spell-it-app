@@ -1,10 +1,15 @@
+:root {
+  --primary-color: #282c34;
+  --secondary-color: white
+}
+
 #root {
-  background-color: #282c34;
+  background-color: var(--primary-color);
   min-height: 100vh;
 }
 
 main {
-  color: white;
+  color: var(--secondary-color);
   width: 600px;
   margin: 0 auto;
   padding-top: 10px; 
@@ -18,7 +23,7 @@ main {
 }
 
 .levels li {
-  border: 1px solid white;
+  border: 1px solid var(--secondary-color);
   border-radius: 4px;
   padding: .6rem 1.2rem;
 }
@@ -26,6 +31,11 @@ main {
 .levels li:hover {
   cursor: pointer;
   filter: brightness(75%);
+}
+
+.levels li.active {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
 }
 
 .btns {
