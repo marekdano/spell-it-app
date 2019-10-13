@@ -8,11 +8,18 @@ const level = {
   Level3: 'level3'
 }
 
+const initScore = {
+  correct: 0,
+  wrong: 0,
+  total: 0
+}
+
 function App() {
   const [words, setWords] = useState([]);
   const [indexOfCurrentWord, setIndexOfCurrentWord] = useState(null);
   const [word, setWord] = useState('');
   const [levelName, setLevelName] = useState(null);
+  const [score, setScore] = useState(initScore);
   const inputEl = useRef(null);
 
   const startGame = (level) => {
@@ -20,6 +27,7 @@ function App() {
     setWords(generatedWords);
     setIndexOfCurrentWord(0);
     setLevelName(level);
+    setScore({...score, total: generatedWords.length});
   }
 
   const playCurrentWord = () => {
@@ -28,9 +36,13 @@ function App() {
   }
 
   const validateEnteredWord = (enteredWord) => {
-    areStringsTheSame(enteredWord.trim(), words[indexOfCurrentWord]) 
-      ? alert('Correct spelling!')
-      : alert('Wrong spelling');
+    if (areStringsTheSame(enteredWord.trim(), words[indexOfCurrentWord])) {
+      alert('Correct spelling!');
+      setScore({...score, correct: score.correct + 1})
+    } else {
+      alert('Wrong spelling');
+      setScore({...score, wrong: score.wrong + 1})
+    }
 
     (indexOfCurrentWord + 1 < words.length) && setIndexOfCurrentWord(indexOfCurrentWord + 1)
   }
@@ -46,13 +58,14 @@ function App() {
       </section>
       <section className="btns">
         <button 
-          disabled={!levelName}
+          disabled={!levelName || indexOfCurrentWord + 1 === words.length}
           onClick={playCurrentWord}
         >
           Play
         </button>
       </section>
       {/* {words.toString()} */}
+      <mark>{score.correct} / {score.total}</mark>
       <form
         onSubmit={event => {
           event.preventDefault();
