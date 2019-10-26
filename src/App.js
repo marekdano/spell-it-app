@@ -47,6 +47,13 @@ function App() {
     (indexOfCurrentWord + 1 < words.length) && setIndexOfCurrentWord(indexOfCurrentWord + 1)
   }
 
+  const gameOver = () => {
+    const isGameOver = indexOfCurrentWord + 1 === words.length
+    if (isGameOver) {
+      alert(`Game over! You got ${score.correct} word right. Congratulation!!!`);
+    }
+  }
+
   return (
     <main>
       <section className="levels">
@@ -71,6 +78,7 @@ function App() {
           event.preventDefault()
           validateEnteredWord(word)
           setWord('')
+          gameOver()
         }}
       > 
         <input 
