@@ -27,7 +27,7 @@ function App() {
     setWords(generatedWords);
     setIndexOfCurrentWord(0);
     setLevelName(level);
-    setScore({...score, total: generatedWords.length});
+    setScore({...initScore, total: generatedWords.length});
   }
 
   const playCurrentWord = () => {
@@ -68,7 +68,7 @@ function App() {
       <mark>{score.correct} / {score.total}</mark>
       <form
         onSubmit={event => {
-          event.preventDefault();
+          event.preventDefault()
           validateEnteredWord(word)
           setWord('')
         }}
