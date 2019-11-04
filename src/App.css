@@ -45,3 +45,7 @@ main {
   align-items: center;
   justify-content: center;
 }
+
+.invisible {
+  display: none;
+}

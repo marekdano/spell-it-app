@@ -50,7 +50,7 @@ function App() {
   const gameOver = () => {
     const isGameOver = indexOfCurrentWord + 1 === words.length
     if (isGameOver) {
-      alert(`Game over! You got ${score.correct} word right. Congratulation!!!`);
+      alert(`Game over! You got ${score.correct} words right. Congratulation!!!`);
     }
   }
 
@@ -58,9 +58,9 @@ function App() {
     <main>
       <section className="levels">
         <ul>
-          <li className={levelName === level.Level1 && 'active'} onClick={() => startGame(level.Level1)}>Level 1</li>
-          <li className={levelName === level.Level2 && 'active'} onClick={() => startGame(level.Level2)}>Level 2</li>
-          <li className={levelName === level.Level3 && 'active'} onClick={() => startGame(level.Level3)}>Level 3</li>
+          <li className={levelName === level.Level1 ? 'active': null} onClick={() => startGame(level.Level1)}>Level 1</li>
+          <li className={levelName === level.Level2 ? 'active': null} onClick={() => startGame(level.Level2)}>Level 2</li>
+          <li className={levelName === level.Level3 ? 'active': null} onClick={() => startGame(level.Level3)}>Level 3</li>
         </ul>
       </section>
       <section className="btns">
@@ -72,8 +72,9 @@ function App() {
         </button>
       </section>
       {/* {words.toString()} */}
-      <mark>{score.correct} / {score.total}</mark>
+      <mark><span data-testid="correct-words">{score.correct}</span> / <span data-testid="total-words">{score.total}</span></mark>
       <form
+        data-testid="form"
         onSubmit={event => {
           event.preventDefault()
           validateEnteredWord(word)
@@ -81,14 +82,16 @@ function App() {
           gameOver()
         }}
       > 
-        <input 
-          data-testid="word-input"
+        <input   
           type="text"
           value={word}
           ref={inputEl}
+          aria-label="word-input"
           onChange={event => setWord(event.target.value)}
         />
       </form>
+
+      <div className="invisible" data-testid="guessing-word">{words[indexOfCurrentWord]}</div>
     </main>
   );
 }
