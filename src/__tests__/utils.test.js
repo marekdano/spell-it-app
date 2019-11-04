@@ -1,12 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App, {generateListOfWords} from './App';
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+import {generateListOfWords} from '../utils';
 
 it('generate list of unique ten words', () => {
   const quantity = 10
@@ -15,4 +7,4 @@ it('generate list of unique ten words', () => {
 
   expect(result.length).toBe(quantity);
   expect(isArrayUnique(result)).toBeTruthy();
-})
+});

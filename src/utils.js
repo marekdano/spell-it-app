@@ -22,8 +22,10 @@ const generateNumInRange = (length) => {
 }
 
 const playWord = (word) => {
-  const msg = new SpeechSynthesisUtterance(word);
-  window.speechSynthesis.speak(msg);
+  if ('speechSynthesis' in window) {
+    const msg = new SpeechSynthesisUtterance(word);
+    window.speechSynthesis.speak(msg);
+  }
 }
 
 const areStringsTheSame = (enteredString, currentString) => {
