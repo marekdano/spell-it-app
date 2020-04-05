@@ -1,5 +1,18 @@
 import { wordsWithLevels } from './source';
 
+/**
+ * Get the list of all available speechSynthesis voices
+ */
+const getSpeechSynthesisVoices = () => {
+  let voices = [];
+  return new Promise(resolve => {
+    window.speechSynthesis.addEventListener('voiceschanged', () => {
+      voices = window.speechSynthesis.getVoices();
+      resolve(voices)
+    })
+  })
+}
+
 const generateListOfWords = (level, quantity) => {
   const list = wordsWithLevels[level];
   const listLength = list.length;
@@ -23,8 +36,10 @@ const generateNumInRange = (length) => {
 
 const playWord = (word) => {
   if ('speechSynthesis' in window) {
-    const msg = new SpeechSynthesisUtterance(word);
-    window.speechSynthesis.speak(msg);
+    const speech = new SpeechSynthesisUtterance(word);
+    speech.pitch = 1.5;
+    speech.rate = 0.8;
+    window.speechSynthesis.speak(speech);
   }
 }
 
